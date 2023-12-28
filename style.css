@@ -34,15 +34,6 @@ body {
     color: white;
 }
 
-#page {
-    margin-left: 200px; 
-    padding: 20px; 
-    height: 100%;
-    width: calc(100% - 200px);
-    box-sizing: border-box;
-    background-color: lightgray;
-}
-
 a{
     text-decoration: none;
     color:aliceblue;
@@ -76,4 +67,34 @@ a{
 
 .active {
     background-color: #333; 
+}
+
+#page {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    height: 100vh; 
+    background-color: lightgray;
+    margin-left: 200px; 
+}
+
+.grid-item {
+    background-color: #ddd;
+    padding: 20px;
+}
+
+.logo_res{
+    width: 20px;
+    height: auto;
+    margin-right: 5px;
+}
+
+.section {
+    display: none; 
+}
+
+.section.active2 {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
 }
