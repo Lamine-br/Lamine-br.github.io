@@ -1,17 +1,8 @@
-const animatedBox = document.getElementById("animatedBox");
-let moveRight = true;
+const elements = document.querySelectorAll("li");
 
-function moveBox() {
-	const containerWidth = document.querySelector(".container").offsetWidth;
-	const boxWidth = animatedBox.offsetWidth;
-
-	if (moveRight) {
-		animatedBox.style.transform = `translateX(${containerWidth - boxWidth}px)`;
-	} else {
-		animatedBox.style.transform = "translateX(0)";
-	}
-
-	moveRight = !moveRight;
-}
-
-setInterval(moveBox, 2000);
+elements.forEach((element) => {
+	element.addEventListener("click", () => {
+		elements.forEach((el) => el.classList.remove("active"));
+		element.classList.add("active");
+	});
+});
