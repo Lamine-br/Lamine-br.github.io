@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# Next.js
+.next/
+
 # misc
 .DS_Store
 .env.local
