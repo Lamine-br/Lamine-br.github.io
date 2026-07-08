@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { Mail, Send } from "lucide-react";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Contact() {
+  const { t } = useLanguage();
+
   return (
     <section id="contact" className="py-24 relative bg-white/[0.02]">
       <div className="container mx-auto px-6 md:px-12">
@@ -16,7 +19,7 @@ export function Contact() {
           className="mb-16 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Get in <span className="text-primary">Touch</span>
+            {t.contact.title} <span className="text-primary">{t.contact.highlight}</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </motion.div>
@@ -31,13 +34,11 @@ export function Contact() {
             className="md:col-span-2 space-y-8"
           >
             <h3 className="text-2xl font-bold font-heading mb-6">
-              Let&apos;s connect
+              {t.contact.subtitle}
             </h3>
 
             <p className="text-text-secondary mb-8 leading-relaxed">
-              Whether you have a question, a project proposal, or just want to
-              say hi, my inbox is always open. I&apos;ll try my best to get back
-              to you!
+              {t.contact.description}
             </p>
 
             <div className="space-y-6">
@@ -98,13 +99,13 @@ export function Contact() {
                     htmlFor="name"
                     className="text-sm font-medium text-foreground/80"
                   >
-                    Name
+                    {t.contact.nameLabel}
                   </label>
 
                   <input
                     type="text"
                     id="name"
-                    placeholder="John Doe"
+                    placeholder={t.contact.namePlaceholder}
                     className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all"
                   />
                 </div>
@@ -114,13 +115,13 @@ export function Contact() {
                     htmlFor="email"
                     className="text-sm font-medium text-foreground/80"
                   >
-                    Email
+                    {t.contact.emailLabel}
                   </label>
 
                   <input
                     type="email"
                     id="email"
-                    placeholder="john@example.com"
+                    placeholder={t.contact.emailPlaceholder}
                     className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all"
                   />
                 </div>
@@ -131,13 +132,13 @@ export function Contact() {
                   htmlFor="subject"
                   className="text-sm font-medium text-foreground/80"
                 >
-                  Subject
+                  {t.contact.subjectLabel}
                 </label>
 
                 <input
                   type="text"
                   id="subject"
-                  placeholder="Project Proposal"
+                  placeholder={t.contact.subjectPlaceholder}
                   className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all"
                 />
               </div>
@@ -147,19 +148,19 @@ export function Contact() {
                   htmlFor="message"
                   className="text-sm font-medium text-foreground/80"
                 >
-                  Message
+                  {t.contact.messageLabel}
                 </label>
 
                 <textarea
                   id="message"
                   rows={5}
-                  placeholder="Hello Lamine..."
+                  placeholder={t.contact.messagePlaceholder}
                   className="w-full bg-white border border-gray-300 rounded-xl px-4 py-3 text-black placeholder:text-gray-500 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/30 transition-all resize-none"
                 ></textarea>
               </div>
 
               <button className="w-full bg-gradient-to-r from-primary to-secondary hover:opacity-90 text-white font-bold py-4 rounded-xl flex items-center justify-center gap-2 transition-all active:scale-[0.98]">
-                Send Message
+                {t.contact.send}
                 <Send size={18} />
               </button>
             </form>
@@ -169,3 +170,4 @@ export function Contact() {
     </section>
   );
 }
+

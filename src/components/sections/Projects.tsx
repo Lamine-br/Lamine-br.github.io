@@ -3,37 +3,30 @@
 import { motion } from "framer-motion";
 import { ExternalLink, Layers } from "lucide-react";
 import { FaGithub } from "react-icons/fa";
+import { useLanguage } from "@/context/LanguageContext";
+
+const projectsMeta = [
+  {
+    technologies: ["React", "React Native", "Node", "RabbitMQ", "MongoDB", "Docker", "Kubernetes", "GitHub Actions"],
+    links: { github: "#", live: "#" }
+  },
+  {
+    technologies: ["HTML", "CSS", "JavaScript"],
+    links: { github: "#", live: "#" }
+  },
+  {
+    technologies: ["PHP", "Bootstrap", "JavaScript", "MySQL"],
+    links: { github: "#", live: "#" }
+  }
+];
 
 export function Projects() {
-  const projects = [
-    {
-      title: "Plateforme de gestion d'offres d'emploi",
-      description: "Application Web et Mobile basée sur une architecture microservices permettant la gestion complète du cycle de recrutement.",
-      technologies: ["React", "React Native", "Node", "RabbitMQ", "MongoDB", "Docker", "Kubernetes", "GitHub Actions"],
-      links: {
-        github: "#",
-        live: "#"
-      }
-    },
-    {
-      title: "OS Scheduler Simulator",
-      description: "Simulation graphique interactive des algorithmes d'ordonnancement des processus du système d'exploitation (FCFS, SJF, Round Robin).",
-      technologies: ["HTML", "CSS", "JavaScript"],
-      links: {
-        github: "#",
-        live: "#"
-      }
-    },
-    {
-      title: "Recipe Management Website",
-      description: "Application web MVC complète pour la gestion et le partage de recettes de cuisine avec système d'authentification et favoris.",
-      technologies: ["PHP", "Bootstrap", "JavaScript", "MySQL"],
-      links: {
-        github: "#",
-        live: "#"
-      }
-    }
-  ];
+  const { t } = useLanguage();
+
+  const projects = t.projects.items.map((item, i) => ({
+    ...item,
+    ...projectsMeta[i],
+  }));
 
   return (
     <section id="projects" className="py-24 relative">
@@ -46,7 +39,7 @@ export function Projects() {
           className="mb-16 text-center md:text-left"
         >
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Featured <span className="text-primary">Projects</span>
+            {t.projects.title} <span className="text-primary">{t.projects.highlight}</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto md:mx-0"></div>
         </motion.div>
@@ -54,7 +47,7 @@ export function Projects() {
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <motion.div
-              key={project.title}
+              key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -72,7 +65,7 @@ export function Projects() {
                   <a href={project.links.github} className="text-text-secondary hover:text-foreground transition-colors" aria-label="GitHub">
                     <FaGithub size={20} />
                   </a>
-                  <a href={project.links.live} className="text-text-secondary hover:text-primary transition-colors" aria-label="Live Demo">
+                  <a href={project.links.live} className="text-text-secondary hover:text-primary transition-colors" aria-label={t.projects.liveDemo}>
                     <ExternalLink size={20} />
                   </a>
                 </div>
@@ -81,7 +74,7 @@ export function Projects() {
               <h3 className="text-2xl font-bold font-heading text-foreground mb-3 relative z-10 group-hover:text-primary transition-colors">
                 {project.title}
               </h3>
-              
+
               <p className="text-text-secondary mb-8 flex-grow relative z-10 leading-relaxed">
                 {project.description}
               </p>
@@ -103,3 +96,4 @@ export function Projects() {
     </section>
   );
 }
+

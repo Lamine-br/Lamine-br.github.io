@@ -4,11 +4,13 @@ import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import Image from "next/image";
 import photo from "@/assets/picture.png";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Hero() {
+  const { t } = useLanguage();
+
   return (
     <section className="relative min-h-[90vh] flex items-center justify-center overflow-hidden" id="hero">
-      {/* Animated Background Particles (Simplified for now) */}
       <div className="absolute inset-0 z-0">
         <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/20 rounded-full blur-[100px] animate-pulse" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-secondary/20 rounded-full blur-[120px] animate-pulse delay-1000" />
@@ -40,7 +42,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.4 }}
             className="text-xl md:text-2xl text-foreground/80 font-medium mb-6 text-balance"
           >
-            Software Engineer <br className="md:hidden" />
+            {t.hero.subtitle} <br className="md:hidden" />
             <span className="hidden md:inline"> • </span>
             <span className="text-accent">Backend</span> • Microservices • QA Automation • DevOps
           </motion.h2>
@@ -51,7 +53,7 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.6 }}
             className="text-lg md:text-xl text-text-secondary max-w-2xl mb-10 text-balance leading-relaxed"
           >
-            &quot;I build scalable distributed systems, design reliable backend architectures and deliver high quality software.&quot;
+            {t.hero.quote}
           </motion.p>
 
           <motion.div
@@ -64,7 +66,7 @@ export function Hero() {
               href="#projects"
               className="px-8 py-4 rounded-full bg-primary text-[#FAFAFA] font-semibold flex items-center justify-center gap-2 hover:bg-primary/90 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-primary/25"
             >
-              View Projects
+              {t.hero.viewProjects}
               <ArrowRight size={20} />
             </a>
             <a
@@ -73,7 +75,7 @@ export function Hero() {
               rel="noopener noreferrer"
               className="px-8 py-4 rounded-full glass text-foreground font-semibold flex items-center justify-center gap-2 hover:bg-primary/10 transition-all hover:scale-105 active:scale-95"
             >
-              Download CV
+              {t.hero.downloadCv}
               <Download size={20} />
             </a>
           </motion.div>

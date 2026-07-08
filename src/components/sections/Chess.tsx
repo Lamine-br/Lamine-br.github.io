@@ -2,24 +2,19 @@
 
 import { motion } from "framer-motion";
 import { Crown, Trophy, Target, Brain, Shield, Compass, Star, Gem } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
+
+const skillIcons = [
+  <Crown key="crown" size={20} />,
+  <Target key="target" size={20} />,
+  <Compass key="compass" size={20} />,
+  <Brain key="brain" size={20} />,
+  <Shield key="shield" size={20} />,
+  <Star key="star" size={20} />,
+];
 
 export function Chess() {
-  const achievements = [
-    "International Master (IM)",
-    "Multiple Algerian Champion",
-    "Multiple African Champion",
-    "Multiple Arab Champion",
-    "World Championship participant"
-  ];
-
-  const skills = [
-    { name: "Strategic Thinking", icon: <Crown size={20} /> },
-    { name: "Problem Solving", icon: <Target size={20} /> },
-    { name: "Decision Making", icon: <Compass size={20} /> },
-    { name: "Pattern Recognition", icon: <Brain size={20} /> },
-    { name: "Discipline", icon: <Shield size={20} /> },
-    { name: "Leadership", icon: <Star size={20} /> }
-  ];
+  const { t } = useLanguage();
 
   return (
     <section id="chess" className="py-24 relative overflow-hidden bg-surface">
@@ -38,20 +33,20 @@ export function Chess() {
           >
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full glass border-primary/30 text-primary mb-6">
               <Gem size={18} />
-              <span className="text-sm font-semibold tracking-wider uppercase">Beyond Coding</span>
+              <span className="text-sm font-semibold tracking-wider uppercase">{t.chess.beyondCoding}</span>
             </div>
 
             <h2 className="text-4xl md:text-6xl font-heading font-extrabold mb-6">
-              International <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600">Master</span> in Chess
+              {t.chess.title} <span className="text-transparent bg-clip-text bg-gradient-to-r from-yellow-400 to-amber-600">{t.chess.highlight}</span> {t.chess.subtitle}
             </h2>
 
             <p className="text-xl text-foreground/80 mb-8 italic">
-              &quot;Playing chess for over 14 years.&quot;
+              {t.chess.quote}
             </p>
 
             <div className="space-y-4 mb-10">
-              <h3 className="text-xl font-semibold mb-4 text-foreground">Major Achievements</h3>
-              {achievements.map((achievement, idx) => (
+              <h3 className="text-xl font-semibold mb-4 text-foreground">{t.chess.achievementsTitle}</h3>
+              {t.chess.achievements.map((achievement, idx) => (
                 <div key={idx} className="flex items-center gap-3">
                   <Trophy className="text-yellow-500 w-5 h-5 flex-shrink-0" />
                   <span className="text-lg text-foreground/90">{achievement}</span>
@@ -67,15 +62,15 @@ export function Chess() {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="grid grid-cols-2 gap-4"
           >
-            {skills.map((skill, index) => (
+            {t.chess.skills.map((skill, index) => (
               <div
                 key={index}
                 className="glass p-6 rounded-2xl border border-border hover:border-yellow-500/30 hover:bg-primary/10 transition-all duration-300 flex flex-col items-center text-center gap-4 group"
               >
                 <div className="w-12 h-12 rounded-full bg-primary/5 flex items-center justify-center text-text-secondary group-hover:text-yellow-500 group-hover:bg-yellow-500/10 transition-colors">
-                  {skill.icon}
+                  {skillIcons[index] ?? <Star size={20} />}
                 </div>
-                <span className="font-medium text-foreground/90">{skill.name}</span>
+                <span className="font-medium text-foreground/90">{skill}</span>
               </div>
             ))}
           </motion.div>
@@ -84,3 +79,4 @@ export function Chess() {
     </section>
   );
 }
+

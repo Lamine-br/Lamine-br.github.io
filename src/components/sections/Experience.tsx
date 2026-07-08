@@ -6,92 +6,23 @@ import { MapPin, Calendar } from "lucide-react";
 import logoRakuten from "@/assets/logo_rakuten.png";
 import logoLIRMM from "@/assets/logo_lirmm.jpg";
 import logoENAFOR from "@/assets/logo_enafor.png";
+import { useLanguage } from "@/context/LanguageContext";
 
-type Experience = {
-  company: string;
-  role: string;
-  date: string;
-  location: string;
-  type: string;
-  color: string;
-  technologies: string[];
-  missions: string[];
-  logo: StaticImageData;
+const logos: Record<string, StaticImageData> = {
+  "Rakuten France": logoRakuten,
+  LIRMM: logoLIRMM,
+  ENAFOR: logoENAFOR,
+};
+
+const colors: Record<string, string> = {
+  "Rakuten France": "from-[#BF0000]/20 to-[#BF0000]/5",
+  LIRMM: "from-blue-500/20 to-blue-500/5",
+  ENAFOR: "from-emerald-500/20 to-emerald-500/5",
 };
 
 export function Experience() {
-  const experiences: Experience[] = [
-    {
-      company: "Rakuten France",
-      role: "QA Automation Engineer",
-      date: "Août 2025 — Présent",
-      location: "Paris, France",
-      type: "CDI",
-      color: "from-[#BF0000]/20 to-[#BF0000]/5",
-      logo: logoRakuten,
-      technologies: ["Playwright", "REST Assured", "JUnit", "Java", "JavaScript", "Cucumber", "Gherkin", "Allure", "CI/CD", "Jenkins", "GitHub Actions", "Microservices"],
-      missions: [
-        "Automatisation des tests backend",
-        "Validation des APIs",
-        "Contrats REST",
-        "Analyse d'applications distribuées",
-        "Amélioration de la qualité",
-        "Participation Agile"
-      ]
-    },
-    {
-      company: "Rakuten France",
-      role: "Backend Developer",
-      date: "Janvier 2025 — Juillet 2025",
-      location: "Paris, France",
-      type: "Stage",
-      color: "from-[#BF0000]/20 to-[#BF0000]/5",
-      logo: logoRakuten,
-      technologies: ["Spring Boot", "Hibernate", "MariaDB", "ElasticSearch", "Kibana", "Prometheus", "Grafana", "DDD", "TDD", "Architecture Hexagonale", "JUnit", "Mockito", "Microservices", "REST API"],
-      missions: [
-        "Développement de microservices",
-        "Conception API REST",
-        "Monitoring & Logging",
-        "Alerting",
-        "Tests automatisés",
-        "Architecture hexagonale"
-      ]
-    },
-    {
-      company: "LIRMM",
-      role: "Full Stack Developer",
-      date: "Septembre 2023 — Juillet 2024",
-      location: "Montpellier, France",
-      type: "Stage",
-      color: "from-blue-500/20 to-blue-500/5",
-      logo: logoLIRMM,
-      technologies: ["React", "React Native", "Node.js", "Express", "MongoDB", "RabbitMQ", "Docker", "Kubernetes", "GitHub Actions", "TailwindCSS", "Microservices"],
-      missions: [
-        "Architecture microservices",
-        "Application Web React",
-        "Application Mobile React Native",
-        "Backend Node.js/Express",
-        "Communication RabbitMQ",
-        "CI/CD GitHub Actions"
-      ]
-    },
-    {
-      company: "ENAFOR",
-      role: "Stagiaire — Étude ERP SAP",
-      date: "Septembre 2022",
-      location: "Alger, Algérie",
-      type: "Stage",
-      color: "from-emerald-500/20 to-emerald-500/5",
-      logo: logoENAFOR,
-      technologies: ["SAP", "SAP FI/CO", "SAP RH", "ABAP"],
-      missions: [
-        "Analyse système ERP SAP (FI/CO)",
-        "Analyse module Ressources Humaines",
-        "Étude d'intégration des modules",
-        "Initiation à l'ABAP"
-      ]
-    }
-  ];
+  const { t } = useLanguage();
+  const experiences = t.experience.jobs;
 
   return (
     <section id="experience" className="py-24 relative bg-white/[0.02]">
@@ -104,7 +35,7 @@ export function Experience() {
           className="mb-16 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Professional <span className="text-primary">Experience</span>
+            {t.experience.title} <span className="text-primary">{t.experience.highlight}</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </motion.div>
@@ -121,12 +52,12 @@ export function Experience() {
               <div className="group rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 bg-white/[0.03]">
 
                 {/* Card Header — gradient banner with logo */}
-                <div className={`relative bg-gradient-to-r ${exp.color} px-6 pt-6 pb-10`}>
+                <div className={`relative bg-gradient-to-r ${colors[exp.company] ?? "from-primary/20 to-primary/5"} px-6 pt-6 pb-10`}>
                   <div className="flex items-start justify-between gap-4">
                     {/* Logo */}
                     <div className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
                       <Image
-                        src={exp.logo}
+                        src={logos[exp.company] ?? logoRakuten}
                         alt={exp.company}
                         className="w-full h-full object-contain"
                       />
@@ -163,7 +94,7 @@ export function Experience() {
 
                     {/* Missions */}
                     <div>
-                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Missions</h4>
+                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">{t.experience.missions}</h4>
                       <ul className="grid sm:grid-cols-2 gap-2">
                         {exp.missions.map((mission, idx) => (
                           <li key={idx} className="flex items-center gap-2 text-sm text-foreground/80">
@@ -179,7 +110,7 @@ export function Experience() {
 
                     {/* Technologies */}
                     <div>
-                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Technologies</h4>
+                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">{t.experience.technologies}</h4>
                       <div className="flex flex-wrap gap-1.5">
                         {exp.technologies.map((tech, idx) => (
                           <span

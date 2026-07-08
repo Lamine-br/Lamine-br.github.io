@@ -9,8 +9,10 @@ import {
   ShieldCheck,
   LayoutTemplate
 } from "lucide-react";
+import { useLanguage } from "@/context/LanguageContext";
 
 export function TechStack() {
+  const { t } = useLanguage();
   const categories = [
     {
       title: "Backend",
@@ -60,7 +62,7 @@ export function TechStack() {
           className="mb-16 text-center"
         >
           <h2 className="text-3xl md:text-5xl font-heading font-bold mb-4">
-            Tech <span className="text-primary">Stack</span>
+            {t.techStack.title} <span className="text-primary">{t.techStack.highlight}</span>
           </h2>
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </motion.div>
@@ -102,4 +104,5 @@ export function TechStack() {
     </section>
   );
 }
+
 
