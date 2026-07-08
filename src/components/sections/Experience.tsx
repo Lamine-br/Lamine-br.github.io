@@ -1,14 +1,34 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Briefcase } from "lucide-react";
+import Image, { StaticImageData } from "next/image";
+import { MapPin, Calendar } from "lucide-react";
+import logoRakuten from "@/assets/logo_rakuten.png";
+import logoLIRMM from "@/assets/logo_lirmm.jpg";
+import logoENAFOR from "@/assets/logo_enafor.png";
+
+type Experience = {
+  company: string;
+  role: string;
+  date: string;
+  location: string;
+  type: string;
+  color: string;
+  technologies: string[];
+  missions: string[];
+  logo: StaticImageData;
+};
 
 export function Experience() {
-  const experiences = [
+  const experiences: Experience[] = [
     {
       company: "Rakuten France",
       role: "QA Automation Engineer",
-      date: "Août 2025 - Présent",
+      date: "Août 2025 — Présent",
+      location: "Paris, France",
+      type: "CDI",
+      color: "from-[#BF0000]/20 to-[#BF0000]/5",
+      logo: logoRakuten,
       technologies: ["Playwright", "REST Assured", "JUnit", "Java", "JavaScript", "Cucumber", "Gherkin", "Allure", "CI/CD", "Jenkins", "GitHub Actions", "Microservices"],
       missions: [
         "Automatisation des tests backend",
@@ -21,31 +41,54 @@ export function Experience() {
     },
     {
       company: "Rakuten France",
-      role: "Backend Developer Intern",
-      date: "Janvier 2025 - Juillet 2025",
+      role: "Backend Developer",
+      date: "Janvier 2025 — Juillet 2025",
+      location: "Paris, France",
+      type: "Stage",
+      color: "from-[#BF0000]/20 to-[#BF0000]/5",
+      logo: logoRakuten,
       technologies: ["Spring Boot", "Hibernate", "MariaDB", "ElasticSearch", "Kibana", "Prometheus", "Grafana", "DDD", "TDD", "Architecture Hexagonale", "JUnit", "Mockito", "Microservices", "REST API"],
       missions: [
         "Développement de microservices",
         "Conception API REST",
-        "Monitoring",
-        "Logging",
+        "Monitoring & Logging",
         "Alerting",
-        "Tests automatisés"
+        "Tests automatisés",
+        "Architecture hexagonale"
       ]
     },
     {
       company: "LIRMM",
-      role: "Full Stack Developer Intern",
-      date: "Septembre 2023 - Juillet 2024",
+      role: "Full Stack Developer",
+      date: "Septembre 2023 — Juillet 2024",
+      location: "Montpellier, France",
+      type: "Stage",
+      color: "from-blue-500/20 to-blue-500/5",
+      logo: logoLIRMM,
       technologies: ["React", "React Native", "Node.js", "Express", "MongoDB", "RabbitMQ", "Docker", "Kubernetes", "GitHub Actions", "TailwindCSS", "Microservices"],
       missions: [
         "Architecture microservices",
-        "Application Web",
-        "Application Mobile",
-        "Backend Node",
+        "Application Web React",
+        "Application Mobile React Native",
+        "Backend Node.js/Express",
         "Communication RabbitMQ",
-        "Déploiement Docker",
-        "CI/CD"
+        "CI/CD GitHub Actions"
+      ]
+    },
+    {
+      company: "ENAFOR",
+      role: "Stagiaire — Étude ERP SAP",
+      date: "Septembre 2022",
+      location: "Alger, Algérie",
+      type: "Stage",
+      color: "from-emerald-500/20 to-emerald-500/5",
+      logo: logoENAFOR,
+      technologies: ["SAP", "SAP FI/CO", "SAP RH", "ABAP"],
+      missions: [
+        "Analyse système ERP SAP (FI/CO)",
+        "Analyse module Ressources Humaines",
+        "Étude d'intégration des modules",
+        "Initiation à l'ABAP"
       ]
     }
   ];
@@ -66,65 +109,87 @@ export function Experience() {
           <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary rounded-full mx-auto"></div>
         </motion.div>
 
-        <div className="max-w-4xl mx-auto space-y-12">
+        <div className="max-w-3xl mx-auto space-y-6">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative pl-8 md:pl-0"
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
             >
-              <div className="md:flex gap-8 items-start group">
-                {/* Timeline Line & Dot (Desktop) */}
-                <div className="hidden md:flex flex-col items-center mt-1">
-                  <div className="w-12 h-12 rounded-full glass flex items-center justify-center text-primary group-hover:scale-110 group-hover:bg-primary group-hover:text-foreground transition-all duration-300 shadow-lg">
-                    <Briefcase size={20} />
-                  </div>
-                  {index !== experiences.length - 1 && (
-                    <div className="w-0.5 h-full bg-gradient-to-b from-primary/50 to-transparent my-4"></div>
-                  )}
-                </div>
+              <div className="group rounded-2xl border border-border overflow-hidden hover:border-primary/30 transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 bg-white/[0.03]">
 
-                {/* Timeline Dot (Mobile) */}
-                <div className="absolute left-0 top-1 w-4 h-4 rounded-full bg-primary md:hidden border-2 border-background shadow-lg shadow-primary/50"></div>
-                {index !== experiences.length - 1 && (
-                  <div className="absolute left-[7px] top-6 bottom-[-3rem] w-0.5 bg-gradient-to-b from-primary/50 to-transparent md:hidden"></div>
-                )}
-
-                {/* Content Card */}
-                <div className="flex-1 glass p-8 rounded-2xl hover:bg-primary/10 transition-colors border-l-4 border-l-primary group-hover:shadow-2xl group-hover:shadow-primary/10">
-                  <div className="flex flex-col md:flex-row md:items-center justify-between mb-4 gap-2">
-                    <div>
-                      <h3 className="text-2xl font-bold text-foreground">{exp.role}</h3>
-                      <span className="text-lg text-primary font-medium">{exp.company}</span>
+                {/* Card Header — gradient banner with logo */}
+                <div className={`relative bg-gradient-to-r ${exp.color} px-6 pt-6 pb-10`}>
+                  <div className="flex items-start justify-between gap-4">
+                    {/* Logo */}
+                    <div className="w-16 h-16 rounded-xl bg-white shadow-lg flex items-center justify-center p-2 shrink-0 group-hover:scale-105 transition-transform duration-300">
+                      <Image
+                        src={exp.logo}
+                        alt={exp.company}
+                        className="w-full h-full object-contain"
+                      />
                     </div>
-                    <span className="px-4 py-1 rounded-full bg-primary/5 text-sm font-medium whitespace-nowrap text-foreground/80 border border-border">
-                      {exp.date}
+
+                    {/* Type badge */}
+                    <span className="px-3 py-1 rounded-full text-xs font-semibold bg-white/10 border border-white/20 text-foreground/80 backdrop-blur-sm mt-1">
+                      {exp.type}
                     </span>
                   </div>
 
-                  <div className="mb-6">
-                    <h4 className="text-sm text-text-secondary uppercase tracking-wider font-semibold mb-3">Missions</h4>
-                    <ul className="grid sm:grid-cols-2 gap-2">
-                      {exp.missions.map((mission, idx) => (
-                        <li key={idx} className="flex items-center gap-2 text-foreground/80">
-                          <div className="w-1.5 h-1.5 rounded-full bg-secondary"></div>
-                          {mission}
-                        </li>
-                      ))}
-                    </ul>
+                  {/* Role & company */}
+                  <div className="mt-4">
+                    <h3 className="text-xl font-bold text-foreground leading-tight">{exp.role}</h3>
+                    <p className="text-primary font-semibold text-base mt-0.5">{exp.company}</p>
                   </div>
 
-                  <div>
-                    <h4 className="text-sm text-text-secondary uppercase tracking-wider font-semibold mb-3">Technologies</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {exp.technologies.map((tech, idx) => (
-                        <span key={idx} className="px-3 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium border border-primary/20">
-                          {tech}
-                        </span>
-                      ))}
+                  {/* Meta: date + location */}
+                  <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-foreground/60">
+                    <span className="flex items-center gap-1.5">
+                      <Calendar size={13} />
+                      {exp.date}
+                    </span>
+                    <span className="flex items-center gap-1.5">
+                      <MapPin size={13} />
+                      {exp.location}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Card Body */}
+                <div className="px-6 pt-4 pb-6 -mt-4 relative">
+                  <div className="rounded-xl bg-white/[0.04] border border-border/50 p-5 space-y-5">
+
+                    {/* Missions */}
+                    <div>
+                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Missions</h4>
+                      <ul className="grid sm:grid-cols-2 gap-2">
+                        {exp.missions.map((mission, idx) => (
+                          <li key={idx} className="flex items-center gap-2 text-sm text-foreground/80">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0"></div>
+                            {mission}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Divider */}
+                    <div className="h-px bg-border/50"></div>
+
+                    {/* Technologies */}
+                    <div>
+                      <h4 className="text-xs text-text-secondary uppercase tracking-widest font-semibold mb-3">Technologies</h4>
+                      <div className="flex flex-wrap gap-1.5">
+                        {exp.technologies.map((tech, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2.5 py-1 rounded-md bg-primary/10 text-primary text-xs font-medium border border-primary/20 hover:bg-primary/20 transition-colors"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -136,3 +201,4 @@ export function Experience() {
     </section>
   );
 }
+

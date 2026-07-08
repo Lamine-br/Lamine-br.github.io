@@ -29,7 +29,14 @@ export const dictionaries = {
       edu1_date: "2022 - 2024",
       edu2_title: "Bachelor in Computer Science",
       edu2_school: "University of Bejaia",
-      edu2_date: "2019 - 2022"
+      edu2_date: "2019 - 2022",
+      languagesTitle: "Languages",
+      languages: [
+        { name: "Kabyle", level: "Native" },
+        { name: "Arabic", level: "Full Professional" },
+        { name: "French", level: "Full Professional (C2)" },
+        { name: "English", level: "Professional (B2)" }
+      ]
     },
     experience: {
       title: "Professional",
@@ -57,6 +64,13 @@ export const dictionaries = {
           date: "September 2023 - July 2024",
           technologies: ["React", "React Native", "Node.js", "Express", "MongoDB", "RabbitMQ", "Docker", "Kubernetes", "GitHub Actions", "TailwindCSS", "Microservices"],
           missions: ["Microservices architecture", "Web application", "Mobile application", "Node Backend", "RabbitMQ communication", "Docker deployment", "CI/CD"]
+        },
+        {
+          company: "ENAFOR",
+          role: "Intern — ERP SAP Study",
+          date: "September 2022",
+          technologies: ["SAP", "SAP FI/CO", "SAP HR", "ABAP"],
+          missions: ["ERP SAP system analysis (FI/CO)", "HR module analysis", "Module integration study", "ABAP introduction"]
         }
       ]
     },
@@ -142,7 +156,14 @@ export const dictionaries = {
       edu1_date: "2022 - 2024",
       edu2_title: "Licence en Informatique",
       edu2_school: "Université de Béjaïa",
-      edu2_date: "2019 - 2022"
+      edu2_date: "2019 - 2022",
+      languagesTitle: "Langues",
+      languages: [
+        { name: "Kabyle", level: "Langue maternelle" },
+        { name: "Arabe", level: "Compétence complète" },
+        { name: "Français", level: "Compétence complète (C2)" },
+        { name: "Anglais", level: "Professionnel (B2)" }
+      ]
     },
     experience: {
       title: "Expérience",
@@ -170,6 +191,13 @@ export const dictionaries = {
           date: "Septembre 2023 - Juillet 2024",
           technologies: ["React", "React Native", "Node.js", "Express", "MongoDB", "RabbitMQ", "Docker", "Kubernetes", "GitHub Actions", "TailwindCSS", "Microservices"],
           missions: ["Architecture microservices", "Application Web", "Application Mobile", "Backend Node", "Communication RabbitMQ", "Déploiement Docker", "CI/CD"]
+        },
+        {
+          company: "ENAFOR",
+          role: "Stagiaire — Étude ERP SAP",
+          date: "Septembre 2022",
+          technologies: ["SAP", "SAP FI/CO", "SAP RH", "ABAP"],
+          missions: ["Analyse système ERP SAP (FI/CO)", "Analyse module Ressources Humaines", "Étude d'intégration des modules", "Initiation à l'ABAP"]
         }
       ]
     },
@@ -226,3 +254,4 @@ export const dictionaries = {
     }
   }
 };
+

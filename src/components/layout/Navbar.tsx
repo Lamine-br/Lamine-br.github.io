@@ -4,19 +4,12 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const navLinks = [
-  { name: "About", href: "#about" },
-  { name: "Experience", href: "#experience" },
-  { name: "Stack", href: "#stack" },
-  { name: "Projects", href: "#projects" },
-  { name: "Chess", href: "#chess" },
-  { name: "Contact", href: "#contact" },
-];
+import { useLanguage } from "@/context/LanguageContext";
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { lang, t, toggleLanguage } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -25,6 +18,15 @@ export function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const navLinks = [
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.experience, href: "#experience" },
+    { name: t.nav.stack, href: "#stack" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.chess, href: "#chess" },
+    { name: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <motion.header
@@ -52,23 +54,41 @@ export function Navbar() {
               {link.name}
             </a>
           ))}
+
+          {/* Language Toggle */}
+          <button
+            onClick={toggleLanguage}
+            className="text-sm font-semibold px-3 py-1.5 rounded-full border border-border hover:border-primary hover:text-primary transition-all text-foreground/70"
+            aria-label="Toggle language"
+          >
+            {lang === "en" ? "FR" : "EN"}
+          </button>
+
           <a
             href="/cv.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="px-5 py-2.5 text-sm font-medium rounded-full bg-accent text-[#FAFAFA] hover:bg-accent/90 transition-all shadow-md shadow-accent/20"
+            className="px-5 py-2.5 text-sm font-medium rounded-full bg-accent text-white hover:bg-accent/90 transition-all shadow-md shadow-accent/20"
           >
-            Resume
+            {t.nav.resume}
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle */}
-        <button
-          className="md:hidden text-foreground"
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile Controls */}
+        <div className="md:hidden flex items-center gap-3">
+          <button
+            onClick={toggleLanguage}
+            className="text-xs font-semibold px-3 py-1.5 rounded-full border border-border text-foreground/70 hover:text-primary hover:border-primary transition-all"
+          >
+            {lang === "en" ? "FR" : "EN"}
+          </button>
+          <button
+            className="text-foreground"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Nav */}
@@ -95,9 +115,9 @@ export function Navbar() {
                 href="/cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-6 py-3 text-base font-medium rounded-full bg-accent text-[#FAFAFA]"
+                className="px-6 py-3 text-base font-medium rounded-full bg-accent text-white"
               >
-                Download CV
+                {t.nav.downloadCv}
               </a>
             </div>
           </motion.nav>

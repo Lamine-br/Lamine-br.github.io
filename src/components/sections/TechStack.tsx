@@ -1,13 +1,13 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { 
-  Server, 
-  MonitorSmartphone, 
-  Wrench, 
-  Database, 
-  ShieldCheck, 
-  LayoutTemplate 
+import {
+  Server,
+  MonitorSmartphone,
+  Wrench,
+  Database,
+  ShieldCheck,
+  LayoutTemplate
 } from "lucide-react";
 
 export function TechStack() {
@@ -15,7 +15,7 @@ export function TechStack() {
     {
       title: "Backend",
       icon: <Server className="w-6 h-6 text-primary" />,
-      skills: ["Java", "Spring Boot", "Node.js", "Express", "Hibernate", "JPA", "REST API"],
+      skills: ["Java", "JavaFX", "Spring Boot", "Node.js", "Express", "Hibernate", "JPA", "REST API"],
     },
     {
       title: "Frontend",
@@ -25,17 +25,17 @@ export function TechStack() {
     {
       title: "DevOps",
       icon: <Wrench className="w-6 h-6 text-whiteccent" />,
-      skills: ["Docker", "Kubernetes", "GitHub Actions", "Jenkins", "Maven", "Git"],
+      skills: ["Docker", "Kubernetes", "GitHub Actions", "Jenkins", "Maven", "Git", "Prometheus", "Grafana", "Kibana"],
     },
     {
       title: "Databases",
       icon: <Database className="w-6 h-6 text-primary" />,
-      skills: ["MongoDB", "MariaDB", "MySQL"],
+      skills: ["MongoDB", "MariaDB", "MySQL", "ElasticSearch"],
     },
     {
       title: "Quality",
       icon: <ShieldCheck className="w-6 h-6 text-secondary" />,
-      skills: ["JUnit", "Mockito", "REST Assured", "Playwright", "Cucumber", "Postman", "Bruno"],
+      skills: ["JUnit", "Mockito", "REST Assured", "Playwright", "Cucumber", "Postman", "Bruno", "Allure Report"],
     },
     {
       title: "Architecture",
@@ -77,7 +77,7 @@ export function TechStack() {
             >
               {/* Hover Glow Effect */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary/0 to-primary/0 group-hover:from-primary/10 group-hover:to-transparent transition-all duration-500 rounded-2xl"></div>
-              
+
               <div className="flex items-center gap-4 mb-6 relative z-10">
                 <div className="p-3 bg-primary/5 rounded-xl">
                   {category.icon}
@@ -102,3 +102,4 @@ export function TechStack() {
     </section>
   );
 }
+

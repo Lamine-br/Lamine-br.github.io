@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight, Download } from "lucide-react";
 import Image from "next/image";
-import photo from "@/assets/photo.png";
+import photo from "@/assets/picture.png";
 
 export function Hero() {
   return (
@@ -82,3 +82,4 @@ export function Hero() {
     </section>
   );
 }
+

@@ -16,7 +16,7 @@ export function About() {
     },
     {
       year: "2019",
-      degree: "Baccalauréat Mathématiques",
+      degree: "Baccalauréat Mathématiques — Mention Très Bien",
       school: "Lycée",
     },
   ];
@@ -71,7 +71,7 @@ export function About() {
               {education.map((item, index) => (
                 <div key={index} className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
                   <div className="flex items-center justify-center w-5 h-5 rounded-full border-4 border-background bg-primary absolute left-0 md:left-1/2 -translate-x-1/2 shadow-lg shadow-primary/40"></div>
-                  
+
                   <div className="w-[calc(100%-2rem)] md:w-[calc(50%-2rem)] p-6 rounded-2xl glass ml-auto md:ml-0 group-hover:bg-primary/10 transition-colors">
                     <span className="text-primary font-bold text-sm mb-1 block">{item.year}</span>
                     <h4 className="text-xl font-semibold mb-1 text-foreground">{item.degree}</h4>
@@ -82,7 +82,9 @@ export function About() {
             </div>
           </motion.div>
         </div>
+
       </div>
     </section>
   );
 }
+
