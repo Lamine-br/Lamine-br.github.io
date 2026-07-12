@@ -40,7 +40,7 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <a href="#" className="text-xl font-heading font-bold text-foreground">
-          Lamine<span className="text-primary">.dev</span>
+          Lamine<span className="text-primary">.portfolio</span>
         </a>
 
         {/* Desktop Nav */}
